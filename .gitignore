@@ -21,6 +21,7 @@
 *.tar.gz
 *.rar
 *.txt
+*.json
 *.xml
 *.bin
 *.lock
