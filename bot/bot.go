@@ -1,16 +1,17 @@
 package bot
 
 import (
+	"NepuBot/commands/general"
 	"NepuBot/config"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"log"
 	"os"
 	"strings"
-	"time"
 )
 
 const Version = "v1.0"
+
 var Session, _ = discordgo.New()
 
 func Run() {
@@ -37,7 +38,7 @@ func Run() {
 		os.Exit(1)
 	}
 
-	err = Session.UpdateListeningStatus(config.Prefix+"help | GrunclePug#7015")
+	err = Session.UpdateListeningStatus(config.Prefix + "help | GrunclePug#7015")
 	if err != nil {
 		log.Printf("error setting discord status, %s\n", err)
 	}
@@ -49,8 +50,15 @@ func messageHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	if strings.HasPrefix(m.Content, config.Prefix) {
-		if m.Content == config.Prefix + "ping" {
-			_, _ = s.ChannelMessageSend(m.ChannelID, "pong! " + s.HeartbeatLatency().Round(time.Millisecond).String())
+		switch m.Content {
+		case config.Prefix + "help":
+			general.Help(s, m)
+		case config.Prefix + "info":
+			general.Info(s, m)
+		case config.Prefix + "invite":
+			general.Invite(s, m)
+		case config.Prefix + "ping":
+			general.Ping(s, m)
 		}
 	}
 }
