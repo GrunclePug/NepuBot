@@ -7,13 +7,15 @@ import (
 	"log"
 )
 
+const Owner = "247916497803018242"
+
 var (
 	Token, Prefix string
-	config *configStruct
+	config        *configStruct
 )
 
 type configStruct struct {
-	Token string `json:"Token"`
+	Token  string `json:"Token"`
 	Prefix string `json:"Prefix"`
 }
 

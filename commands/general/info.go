@@ -8,9 +8,7 @@ import (
 func Info(s *discordgo.Session, m *discordgo.MessageCreate) {
 	userCount := 0
 	for i := 0; i < len(s.State.Guilds); i++ {
-		for j := 0; j < len(s.State.Guilds[i].Members); j++ {
-			userCount += j
-		}
+		userCount += s.State.Guilds[i].MemberCount
 	}
 
 	embed := &discordgo.MessageEmbed{

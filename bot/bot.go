@@ -2,6 +2,7 @@ package bot
 
 import (
 	"NepuBot/commands/general"
+	"NepuBot/commands/owner"
 	"NepuBot/config"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
@@ -50,15 +51,23 @@ func messageHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 
 	if strings.HasPrefix(m.Content, config.Prefix) {
-		switch m.Content {
+		switch strings.Fields(m.Content)[0] {
+		//General
 		case config.Prefix + "help":
 			general.Help(s, m)
+		case config.Prefix + "userinfo":
+			general.UserInfo(s, m)
 		case config.Prefix + "info":
 			general.Info(s, m)
 		case config.Prefix + "invite":
 			general.Invite(s, m)
 		case config.Prefix + "ping":
 			general.Ping(s, m)
+		//Owner
+		case config.Prefix + "guildlist":
+			owner.GuildList(s, m)
+		case config.Prefix + "guildinvitelist":
+			owner.GuildInviteList(s, m)
 		}
 	}
 }
