@@ -1,7 +1,6 @@
 package general
 
 import (
-	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"strconv"
 	"time"
@@ -9,7 +8,6 @@ import (
 
 func UserInfo(s *discordgo.Session, m *discordgo.MessageCreate) {
 	var user = m.Author
-	var err error
 
 	if len(m.Mentions) > 0 {
 		user = m.Mentions[0]
@@ -85,6 +83,6 @@ func UserInfo(s *discordgo.Session, m *discordgo.MessageCreate) {
 			},
 		},
 	}
-	_, err = s.ChannelMessageSendEmbed(m.ChannelID, embed)
-	fmt.Println(err)
+	_ = s.ChannelTyping(m.ChannelID)
+	_, _ = s.ChannelMessageSendEmbed(m.ChannelID, embed)
 }

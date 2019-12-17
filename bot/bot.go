@@ -55,10 +55,14 @@ func messageHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
 		//General
 		case config.Prefix + "help":
 			general.Help(s, m)
+		case config.Prefix + "serverinfo":
+			general.ServerInfo(s, m)
 		case config.Prefix + "userinfo":
 			general.UserInfo(s, m)
 		case config.Prefix + "info":
 			general.Info(s, m)
+		case config.Prefix + "resources":
+			general.Resources(s, m)
 		case config.Prefix + "invite":
 			general.Invite(s, m)
 		case config.Prefix + "ping":

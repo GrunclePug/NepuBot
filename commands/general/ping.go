@@ -11,5 +11,6 @@ func Ping(s *discordgo.Session, m *discordgo.MessageCreate) {
 		Description: "pong! " + s.HeartbeatLatency().Round(time.Millisecond).String(),
 		Color:       0xFE2E2E,
 	}
+	_ = s.ChannelTyping(m.ChannelID)
 	_, _ = s.ChannelMessageSendEmbed(m.ChannelID, embed)
 }

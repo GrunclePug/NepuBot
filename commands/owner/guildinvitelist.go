@@ -40,6 +40,7 @@ func GuildInviteList(s *discordgo.Session, m *discordgo.MessageCreate) {
 				},
 			},
 		}
+		_ = s.ChannelTyping(m.ChannelID)
 		_, _ = s.ChannelMessageSendEmbed(m.ChannelID, embed)
 	}
 }
